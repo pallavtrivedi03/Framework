@@ -3,20 +3,16 @@
 //  Framework
 //
 //  Created by Pallav Trivedi on 25/11/16.
-
 //
 
 import UIKit
 
-class ApplicationController: NSObject
+public class ApplicationController: NSObject
 {
     let webServiceHelper:WebServiceHelper?
     
-    static let sharedInstance:ApplicationController = {
-        let instance = ApplicationController()
-        return instance
-    }()
-    
+    static let sharedInstance:ApplicationController = ApplicationController()
+     
     override init()
     {
          webServiceHelper = WebServiceHelper()

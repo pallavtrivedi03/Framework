@@ -3,7 +3,6 @@
 //  Framework
 //
 //  Created by Pallav Trivedi on 25/11/16.
-
 //
 
 import UIKit
@@ -17,7 +16,13 @@ class WebConnector: NSObject
     let HTTPHeaderContentTypeTag                = "Content-Type"
     let HTTPHeaderAcceptTypeJSONValue           = "application/json"
     let HTTPHeaderAcceptTypeTag                 = "Accept"
-    let HTTPRequestTimeOutIntervalValue         = 30
+    let HTTP_NO_CONTENT                         =   204;
+    let HTTP_SUCCESS                            =   200;
+    let HTTP_AUTH_FAILURE                       =   400;
+    let SSOTokenExpiredCode                     =   401;
+    let JTokenExpiredCode                       =   403;
+    let HTTP_AUTH_TOKEN_EXPIRY                  =   419;
+    let HTTPRequestTimeOutIntervalValue         =   30
     var cachePolicy                             = NSURLRequest.CachePolicy.useProtocolCachePolicy
     let imageCache                              = NSCache<AnyObject, AnyObject>()
     
@@ -71,12 +76,31 @@ class WebConnector: NSObject
             }
             else if let httpResponse = response as? HTTPURLResponse
             {
-                if httpResponse.statusCode == 200
+                if httpResponse.statusCode == self.HTTP_SUCCESS
                 {
-                    success(self.seializeJSON(data: data))
+                    let dict = ["response":self.seializeJSON(data: data),"code":httpResponse.statusCode]
+                    success(dict)
+                }
+                else if httpResponse.statusCode == self.HTTP_AUTH_TOKEN_EXPIRY
+                {
+                    //refresh sso token
+                }
+                else if httpResponse.statusCode == self.HTTP_AUTH_FAILURE
+                {
+                    let dict = ["response":self.seializeJSON(data: data),"code":httpResponse.statusCode]
+                    success(dict)
+                }
+                else if httpResponse.statusCode == self.HTTP_NO_CONTENT
+                {
+                    let dict = ["response":self.seializeJSON(data: data),"code":httpResponse.statusCode]
+                    success(dict)
+                }
+                else
+                {
+                    let dict = ["response":nil,"code":httpResponse.statusCode]
+                    success(dict)
                 }
             }
-            
         }).resume()
     }
     
@@ -85,16 +109,19 @@ class WebConnector: NSObject
         let formattedURL = NSURL.init(string: url)
         var request = URLRequest(url: formattedURL as! URL)
         request.httpMethod = HTTPMethodPostKey
-        request.setValue(HTTPHeaderContentTypeURLEncodedValue, forHTTPHeaderField: HTTPHeaderContentTypeTag)
-        request.setValue(HTTPHeaderAcceptTypeJSONValue, forHTTPHeaderField: HTTPHeaderAcceptTypeTag)
         request.timeoutInterval = TimeInterval(HTTPRequestTimeOutIntervalValue)
         request.cachePolicy = cachePolicy
         
         if (params.count > 0)
         {
             let parameterString = params.stringFromHttpParameters()
-            let urlString =  (string: "\(url)?\(parameterString)")
-            request.httpBody = urlString.data(using: .utf8)
+            request.httpBody = parameterString.data(using: .utf8)
+            request.setValue(HTTPHeaderAcceptTypeJSONValue, forHTTPHeaderField: HTTPHeaderAcceptTypeTag)
+        }
+        else
+        {
+            request.setValue(HTTPHeaderContentTypeURLEncodedValue, forHTTPHeaderField: HTTPHeaderContentTypeTag)
+            request.setValue(HTTPHeaderAcceptTypeJSONValue, forHTTPHeaderField: HTTPHeaderAcceptTypeTag)
         }
         
         if (headers.count > 0)
@@ -118,9 +145,29 @@ class WebConnector: NSObject
             }
             else if let httpResponse = response as? HTTPURLResponse
             {
-                if httpResponse.statusCode == 200
+                if httpResponse.statusCode == self.HTTP_SUCCESS
                 {
-                    success(self.seializeJSON(data: data))
+                    let dict = ["response":self.seializeJSON(data: data),"code":httpResponse.statusCode]
+                    success(dict)
+                }
+                else if httpResponse.statusCode == self.HTTP_AUTH_TOKEN_EXPIRY
+                {
+                    //refresh sso token
+                }
+                else if httpResponse.statusCode == self.HTTP_AUTH_FAILURE
+                {
+                    let dict = ["response":self.seializeJSON(data: data),"code":httpResponse.statusCode]
+                    success(dict)
+                }
+                else if httpResponse.statusCode == self.HTTP_NO_CONTENT
+                {
+                    let dict = ["response":self.seializeJSON(data: data),"code":httpResponse.statusCode]
+                    success(dict)
+                }
+                else
+                {
+                    let dict = ["response":nil,"code":httpResponse.statusCode]
+                    success(dict)
                 }
             }
             
@@ -136,35 +183,35 @@ class WebConnector: NSObject
         }
         else
         {
-        let formattedURL = NSURL.init(string: url)
-        var request = URLRequest(url: formattedURL as! URL)
-        request.httpMethod = HTTPMethodGetKey
-        request.timeoutInterval = TimeInterval(HTTPRequestTimeOutIntervalValue)
-        request.cachePolicy = cachePolicy
-        
-        session?.dataTask(with: request, completionHandler: {
-            data,response,error in
+            let formattedURL = NSURL.init(string: url)
+            var request = URLRequest(url: formattedURL as! URL)
+            request.httpMethod = HTTPMethodGetKey
+            request.timeoutInterval = TimeInterval(HTTPRequestTimeOutIntervalValue)
+            request.cachePolicy = cachePolicy
             
-            if let error = error
-            {
-                print(error.localizedDescription)
-            }
-            else if let httpResponse = response as? HTTPURLResponse
-            {
-                if httpResponse.statusCode == 200
+            session?.dataTask(with: request, completionHandler: {
+                data,response,error in
+                
+                if let error = error
                 {
-                    if let downloadedImage = UIImage(data: data!) {
-                        self.imageCache.setObject(downloadedImage, forKey: url as AnyObject)
-                        completion(downloadedImage)
-                    }
-                    
+                    print(error.localizedDescription)
                 }
-            }
-            
-        }).resume()
+                else if let httpResponse = response as? HTTPURLResponse
+                {
+                    if httpResponse.statusCode == self.HTTP_SUCCESS
+                    {
+                        if let downloadedImage = UIImage(data: data!) {
+                            self.imageCache.setObject(downloadedImage, forKey: url as AnyObject)
+                            completion(downloadedImage)
+                        }
+                        
+                    }
+                }
+                
+            }).resume()
         }
     }
-
+    
     //MARK: Helper Methods
     func seializeJSON(data:Data?) -> Any
     {
@@ -173,19 +220,43 @@ class WebConnector: NSObject
             do {
                 if let parsedResponse = try JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]
                 {
+                    let code = getErrorCodeFrom(dictionary: parsedResponse)
+                    if code == SSOTokenExpiredCode
+                    {
+                        //refresh sso token
+                    }
+                    else
+                    {
                     return parsedResponse as Any
+                    }
                 }
                 else if let parsedResponse = try JSONSerialization.jsonObject(with: data!, options: []) as? [Any]
                 {
                     return parsedResponse
                 }
-
+                
             } catch
             {
                 print(error.localizedDescription)
             }
         }
         return [""]
+    }
+    
+    func getErrorCodeFrom(dictionary:[String:Any]) -> Int
+    {
+        if let code = dictionary["code"] as? Int
+        {
+            return code
+        }
+        else if let code = dictionary["messageCode"] as? Int
+        {
+            return code
+        }
+        else
+        {
+            return 0
+        }
     }
     
     func setMaximumNumberOfHttpConnections(count:Int)

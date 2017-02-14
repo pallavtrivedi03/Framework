@@ -1,9 +1,8 @@
 //
 //  WebServiceHelper.swift
 //  Framework
-//
 //  Created by Pallav Trivedi on 30/11/16.
-//
+
 
 import UIKit
 
@@ -96,6 +95,8 @@ class WebServiceHelper: NSObject
             
         })
     }
+    
+    
     
     func downloadImageFromURL(url:String,completionHandler:@escaping(_ image:UIImage)->Void)
     {
