@@ -7,23 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B50D7B01DE85B99003F6FA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B50D7AF1DE85B99003F6FA5 /* AppDelegate.swift */; };
-		7B50D7B81DE85B9A003F6FA5 /* Framework.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B50D7B61DE85B99003F6FA5 /* Framework.xcdatamodeld */; };
 		7B50D7C51DE85EAF003F6FA5 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B50D7C41DE85EAF003F6FA5 /* ApplicationController.swift */; };
 		7B50D7C71DE86B7F003F6FA5 /* WebConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B50D7C61DE86B7F003F6FA5 /* WebConnector.swift */; };
 		7B70ABBE1DED5F6000DD2C1A /* WebServiceResponseVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B70ABBD1DED5F6000DD2C1A /* WebServiceResponseVO.swift */; };
 		7B70ABC21DEEC5D800DD2C1A /* WebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B70ABC11DEEC5D800DD2C1A /* WebServiceHelper.swift */; };
+		7BDB03E91E5D844400221707 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB03E81E5D844400221707 /* UserManager.swift */; };
+		7BDB03EB1E5D847300221707 /* UserVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB03EA1E5D847300221707 /* UserVO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7B50D7AC1DE85B99003F6FA5 /* Framework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Framework.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B50D7AF1DE85B99003F6FA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7B50D7B71DE85B99003F6FA5 /* Framework.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Framework.xcdatamodel; sourceTree = "<group>"; };
-		7B50D7BE1DE85B9A003F6FA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B50D7C41DE85EAF003F6FA5 /* ApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
 		7B50D7C61DE86B7F003F6FA5 /* WebConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebConnector.swift; sourceTree = "<group>"; };
 		7B70ABBD1DED5F6000DD2C1A /* WebServiceResponseVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceResponseVO.swift; sourceTree = "<group>"; };
 		7B70ABC11DEEC5D800DD2C1A /* WebServiceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceHelper.swift; sourceTree = "<group>"; };
+		7BDB03E81E5D844400221707 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		7BDB03EA1E5D847300221707 /* UserVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,11 +55,10 @@
 		7B50D7AE1DE85B99003F6FA5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				7B50D7AF1DE85B99003F6FA5 /* AppDelegate.swift */,
-				7B50D7BE1DE85B9A003F6FA5 /* Info.plist */,
-				7B50D7B61DE85B99003F6FA5 /* Framework.xcdatamodeld */,
 				7B50D7C41DE85EAF003F6FA5 /* ApplicationController.swift */,
 				7B50D7C61DE86B7F003F6FA5 /* WebConnector.swift */,
+				7BDB03E81E5D844400221707 /* UserManager.swift */,
+				7BDB03EA1E5D847300221707 /* UserVO.swift */,
 				7B70ABBD1DED5F6000DD2C1A /* WebServiceResponseVO.swift */,
 				7B70ABC11DEEC5D800DD2C1A /* WebServiceHelper.swift */,
 			);
@@ -137,11 +135,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BDB03E91E5D844400221707 /* UserManager.swift in Sources */,
 				7B70ABC21DEEC5D800DD2C1A /* WebServiceHelper.swift in Sources */,
 				7B50D7C71DE86B7F003F6FA5 /* WebConnector.swift in Sources */,
-				7B50D7B01DE85B99003F6FA5 /* AppDelegate.swift in Sources */,
 				7B50D7C51DE85EAF003F6FA5 /* ApplicationController.swift in Sources */,
-				7B50D7B81DE85B9A003F6FA5 /* Framework.xcdatamodeld in Sources */,
+				7BDB03EB1E5D847300221707 /* UserVO.swift in Sources */,
 				7B70ABBE1DED5F6000DD2C1A /* WebServiceResponseVO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,19 +288,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		7B50D7B61DE85B99003F6FA5 /* Framework.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				7B50D7B71DE85B99003F6FA5 /* Framework.xcdatamodel */,
-			);
-			currentVersion = 7B50D7B71DE85B99003F6FA5 /* Framework.xcdatamodel */;
-			path = Framework.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 7B50D7A41DE85B99003F6FA5 /* Project object */;
 }

@@ -11,7 +11,7 @@
  {
     var webServiceHelper:WebServiceHelper?
     var userManager:UserManager?
-    static let sharedInstance:ApplicationController = ApplicationController()
+    public static let sharedInstance:ApplicationController = ApplicationController()
     
     override init()
     {
