@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = 'Framework'
-s.version          = '0.1.0'
+s.version          = '0.1.1'
 s.summary          = 'Provides you the methods to call webservices, manage users, storage and other basic stuffs.'
 
 s.description      = <<-DESC
