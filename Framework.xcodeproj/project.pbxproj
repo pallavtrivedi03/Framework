@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7BCB0A95202CA08E004C0C20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB0A94202CA08E004C0C20 /* AppDelegate.swift */; };
-		7BCB0A9C202CA08E004C0C20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BCB0A9B202CA08E004C0C20 /* Assets.xcassets */; };
-		7BCB0A9F202CA08E004C0C20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BCB0A9D202CA08E004C0C20 /* LaunchScreen.storyboard */; };
 		7BCB0AAA202CA0C4004C0C20 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB0AA6202CA0C2004C0C20 /* ApplicationController.swift */; };
 		7BCB0AAB202CA0C4004C0C20 /* WebServiceResponseVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB0AA7202CA0C3004C0C20 /* WebServiceResponseVO.swift */; };
 		7BCB0AAC202CA0C4004C0C20 /* WebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCB0AA8202CA0C3004C0C20 /* WebServiceHelper.swift */; };
@@ -18,10 +15,6 @@
 
 /* Begin PBXFileReference section */
 		7BCB0A91202CA08E004C0C20 /* Framework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Framework.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7BCB0A94202CA08E004C0C20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7BCB0A9B202CA08E004C0C20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7BCB0A9E202CA08E004C0C20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7BCB0AA0202CA08E004C0C20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BCB0AA6202CA0C2004C0C20 /* ApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
 		7BCB0AA7202CA0C3004C0C20 /* WebServiceResponseVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceResponseVO.swift; sourceTree = "<group>"; };
 		7BCB0AA8202CA0C3004C0C20 /* WebServiceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceHelper.swift; sourceTree = "<group>"; };
@@ -62,10 +55,6 @@
 				7BCB0AA9202CA0C4004C0C20 /* WebConnector.swift */,
 				7BCB0AA8202CA0C3004C0C20 /* WebServiceHelper.swift */,
 				7BCB0AA7202CA0C3004C0C20 /* WebServiceResponseVO.swift */,
-				7BCB0A94202CA08E004C0C20 /* AppDelegate.swift */,
-				7BCB0A9B202CA08E004C0C20 /* Assets.xcassets */,
-				7BCB0A9D202CA08E004C0C20 /* LaunchScreen.storyboard */,
-				7BCB0AA0202CA08E004C0C20 /* Info.plist */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -129,8 +118,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BCB0A9F202CA08E004C0C20 /* LaunchScreen.storyboard in Resources */,
-				7BCB0A9C202CA08E004C0C20 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,22 +132,10 @@
 				7BCB0AAC202CA0C4004C0C20 /* WebServiceHelper.swift in Sources */,
 				7BCB0AAA202CA0C4004C0C20 /* ApplicationController.swift in Sources */,
 				7BCB0AAD202CA0C4004C0C20 /* WebConnector.swift in Sources */,
-				7BCB0A95202CA08E004C0C20 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		7BCB0A9D202CA08E004C0C20 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7BCB0A9E202CA08E004C0C20 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		7BCB0AA1202CA08E004C0C20 /* Debug */ = {
